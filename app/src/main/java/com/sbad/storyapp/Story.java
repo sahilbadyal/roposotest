@@ -8,13 +8,14 @@ public class Story {
     private String id;
     private String author;
     private String verb;
-    private String username;
+    private String db;
     private String url;
     private String type;
     private String title;
     private boolean like_flag;
     private int likes_count;
     private int comment_count;
+    private String is_following;
     private String si;
 
     public String getDescription() {
@@ -49,12 +50,12 @@ public class Story {
         this.verb = verb;
     }
 
-    public String getUsername() {
-        return username;
+    public String getDb() {
+        return db;
     }
 
-    public void setUsername(String db) {
-        this.username = username;
+    public void setDb(String db) {
+        this.db = db;
     }
 
     public String getUrl() {
@@ -111,5 +112,13 @@ public class Story {
 
     public void setSi(String si) {
         this.si = si;
+    }
+
+    public String getIs_following() {
+        return is_following;
+    }
+
+    public void setIs_following(String is_following) {
+        this.is_following = is_following;
     }
 }

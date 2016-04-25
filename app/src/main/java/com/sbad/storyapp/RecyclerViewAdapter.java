@@ -19,9 +19,11 @@ import java.util.zip.Inflater;
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private Context context;
+    private DbHelper dbHelper;
     private ArrayList<Story> stories = new ArrayList<>();
 
     public RecyclerViewAdapter(Context context, ArrayList<Story> stories) {
+        dbHelper= new DbHelper(context);
         this.context = context;
         this.stories = stories;
     }
@@ -33,18 +35,29 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         if(!stories.get(position).getTitle().isEmpty()&&stories.get(position).getTitle().length()!=0){
             holder.title.setText(stories.get(position).getTitle());
         }
         if(!stories.get(position).getDescription().isEmpty()&&stories.get(position).getDescription().length()!=0){
-            holder.description.setText(stories.get(position).getDescription());
+            String desc = "";
+            if(stories.get(position).getDescription().length()>=40) {
+                desc = stories.get(position).getDescription().substring(0, 40);
+            }else{
+                desc =  stories.get(position).getDescription();
+            }
+            holder.description.setText(desc+"...");
         }
         if(!stories.get(position).getAuthor().isEmpty()&&stories.get(position).getAuthor().length()!=0){
             holder.author.setText(stories.get(position).getAuthor());
         }
         if(!stories.get(position).getSi().isEmpty()&&stories.get(position).getSi().length()!=0){
             Glide.with(context).load(stories.get(position).getSi()).diskCacheStrategy(DiskCacheStrategy.SOURCE).placeholder(R.drawable.ic_person).error(R.mipmap.ic_launcher).into(holder.si);
+        }
+        if(dbHelper.checkFollowing(stories.get(position).getDb()).equals("true")){
+            holder.img.setImageResource(R.drawable.ic_followed);
+        }else{
+            holder.img.setImageResource(R.drawable.ic_person);
         }
     }
 
@@ -57,12 +70,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public static class ViewHolder extends RecyclerView.ViewHolder{
         TextView title,description,author;
         ImageView si;
+        ImageView img;
         public ViewHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.title);
             description= (TextView) itemView.findViewById(R.id.description);
             author=(TextView) itemView.findViewById(R.id.username);
             si = (ImageView) itemView.findViewById(R.id.story_img);
+            img = (ImageView) itemView.findViewById(R.id.follow_image);
+
         }
     }
     public void refresh(ArrayList<Story> list) {
