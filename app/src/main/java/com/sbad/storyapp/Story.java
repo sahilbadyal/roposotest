@@ -8,7 +8,7 @@ public class Story {
     private String id;
     private String author;
     private String verb;
-    private String db;
+    private String username;
     private String url;
     private String type;
     private String title;
@@ -49,12 +49,12 @@ public class Story {
         this.verb = verb;
     }
 
-    public String getDb() {
-        return db;
+    public String getUsername() {
+        return username;
     }
 
-    public void setDb(String db) {
-        this.db = db;
+    public void setUsername(String db) {
+        this.username = username;
     }
 
     public String getUrl() {
