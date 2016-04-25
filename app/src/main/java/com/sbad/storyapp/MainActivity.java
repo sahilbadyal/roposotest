@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                             image.setImageResource(R.drawable.ic_followed);
                             dbHelper.UpdateData(storyArrayList.get(position).getDb(),"true");
                         }else{
-                            image.setImageResource(R.drawable.ic_person);
+                            image.setImageResource(R.drawable.ic_default);
                             dbHelper.UpdateData(storyArrayList.get(position).getDb(),"false");
                         }
                     }

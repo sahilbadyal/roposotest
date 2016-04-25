@@ -57,7 +57,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         if(dbHelper.checkFollowing(stories.get(position).getDb()).equals("true")){
             holder.img.setImageResource(R.drawable.ic_followed);
         }else{
-            holder.img.setImageResource(R.drawable.ic_person);
+            holder.img.setImageResource(R.drawable.ic_default);
         }
     }
 

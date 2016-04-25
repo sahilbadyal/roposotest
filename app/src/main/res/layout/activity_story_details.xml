@@ -78,7 +78,7 @@
                     android:layout_height="40dp"
                     android:layout_weight="1"
                     android:id="@+id/follow_image_details"
-                    android:src="@drawable/ic_person"/>
+                    android:src="@drawable/ic_default"/>
 
                 <TextView
                     android:layout_width="match_parent"
