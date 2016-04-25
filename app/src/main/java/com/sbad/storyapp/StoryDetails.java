@@ -21,9 +21,9 @@ public class StoryDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_story_details);
 
-        Bundle data = getIntent().getExtras();
+        final Bundle data = getIntent().getExtras();
         TextView title, description, author;
-        ImageView imgView,follow;
+        final ImageView imgView,follow;
         dbHelper = new DbHelper(this);
 
         title = (TextView) findViewById(R.id.title_details);
@@ -35,6 +35,19 @@ public class StoryDetails extends AppCompatActivity {
         if(dbHelper.checkFollowing(data.getString("db")).equals("true")){
             follow.setImageResource(R.drawable.ic_followed);
         }
+
+        follow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(dbHelper.checkFollowing(data.getString("db")).equals("false")) {
+                    follow.setImageResource(R.drawable.ic_followed);
+                    dbHelper.UpdateData(data.getString("db"),"true");
+                }else{
+                    follow.setImageResource(R.drawable.ic_default);
+                    dbHelper.UpdateData(data.getString("db"),"false");
+                }
+            }
+        });
 
         title.setText(data.getString("title"));
         description.setText(data.getString("description"));
