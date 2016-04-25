@@ -16,18 +16,13 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 
 public class MainActivity extends AppCompatActivity {
     RecyclerViewAdapter adapter;
     RecyclerView recyclerView;
     ArrayList<Story> storyArrayList;
-    Map<String, HashMap<String, String>> userList;
-    Map getUser(String id)  {
-        return userList.get(id);
-    }
+
     DbHelper dbHelper;
 
     @Override
@@ -40,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
         try {
             JSONObject obj = new JSONObject(loadJSONFromAsset());
             JSONArray array = obj.getJSONArray("data");
-            userList = new HashMap<>();
-            HashMap<String, String> userid;
 
             for (int i = 0; i < array.length(); i++) {
                 JSONObject object = array.getJSONObject(i);
@@ -49,28 +42,24 @@ public class MainActivity extends AppCompatActivity {
                     String username = object.getString("username");
                     String id = object.getString("id");
                     String is_following = ""+object.getBoolean("is_following");
+                    String about = object.getString("about");
 
-                    dbHelper.insertData(id,is_following);
-
-                    userid = new HashMap<String, String>();
-                    userid.put("id", id);
-                    userid.put("username", username);
-
-                    userList.put(id, userid);
+                    dbHelper.insertData(id,is_following,about,username);
                 }
             }
 
             for (int i = 0; i < array.length(); i++) {
                 JSONObject object = array.getJSONObject(i);
                 if(object.has("type"))    {
-                    String follow= dbHelper.checkFollowing(object.getString("db"));
-                    String username = getUser(object.getString("db")).get("username").toString();
                     Story item = new Story();
+                    String follow= dbHelper.checkFollowing(object.getString("db"));
+                    String username = dbHelper.getUsername(object.getString("db"));
                     item.setTitle(object.getString("title"));
                     item.setDescription(object.getString("description"));
                     item.setSi(object.getString("si"));
                     item.setDb(object.getString("db"));
                     item.setIs_following(follow);
+                    item.setLikes_count(object.getInt("likes_count"));
                     item.setAuthor(username);
                     storyArrayList.add(item);
                 }
@@ -98,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("si", obj.getSi());
                         intent.putExtra("author", obj.getAuthor());
                         intent.putExtra("db", obj.getDb());
+                        intent.putExtra("likes",obj.getLikes_count());
                         startActivity(intent);
                     }
                 });

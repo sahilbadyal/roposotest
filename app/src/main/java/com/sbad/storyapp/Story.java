@@ -1,7 +1,7 @@
 package com.sbad.storyapp;
 
 /**
- * Created by sahil on 24/4/16.
+ * Created by sbad on 24/4/16.
  */
 public class Story {
     private String description;

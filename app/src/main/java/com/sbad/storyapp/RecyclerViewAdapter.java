@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.zip.Inflater;
 
 /**
- * Created by sahil on 24/4/16.
+ * Created by sbad on 24/4/16.
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private Context context;

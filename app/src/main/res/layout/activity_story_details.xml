@@ -5,8 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -38,34 +36,39 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:layout_weight="5">
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/title_details"
-                    android:gravity="bottom"
-                    android:maxLines="2"
-                    android:text="Title"
-                    android:textColor="#000"
-                    android:textSize="@dimen/abc_text_size_title_material"
-                    android:alpha="0.8"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:layout_weight="5">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/description_details"
-                    android:textSize="@dimen/abc_text_size_caption_material"
-                    android:text="Description"
-                    android:textColor="#000"
-                    android:alpha="0.8"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/title_details"
+                        android:gravity="bottom"
+                        android:maxLines="2"
+                        android:text="Title"
+                        android:textColor="#000"
+                        android:textSize="@dimen/abc_text_size_title_material"
+                        android:alpha="0.8"/>
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/description_details"
+                        android:textSize="@dimen/abc_text_size_caption_material"
+                        android:text="Description"
+                        android:textColor="#000"
+                        android:alpha="0.8"/>
+
+                </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -84,9 +87,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:id="@+id/username_details"
+                    android:id="@+id/likes"
                     android:textSize="@dimen/abc_text_size_caption_material"
-                    android:text="Username"
+                    android:text="Likes"
                     android:gravity="center"
                     android:textColor="#000"
                     android:paddingLeft="2dp"/>
@@ -94,6 +97,36 @@
             </LinearLayout>
 
         </LinearLayout>
+
+
+    </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="#000000"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/username_details"
+                android:textSize="@dimen/abc_text_size_title_material"
+                android:text="Username"
+                android:gravity="center"
+                android:textColor="#000"
+                android:paddingLeft="2dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/about"
+            android:textSize="@dimen/abc_text_size_caption_material"
+            android:text="About"
+            android:textColor="#000"
+            android:alpha="0.8"/>
+
     </LinearLayout>
 
 </ScrollView>
